@@ -1,35 +1,20 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const db = require(".../db/conn");
+const {DataTypes} = require("sequilize");
 
-class Jogo extends Model {}
+const Jogo = db.define("Jogo",{
+    titulo:{
+        type: DataTypes.STRING,
+        required: true,
+    },
+    desc: {
+        type : DataTypes.STRING,
+        required: true
+    },
+    preçoBase: {
+        type : DataTypes.STRING,
+        required: true
+    },
 
-Jogo.init({
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  nome: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  plataforma: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  genero: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  ano_lancamento: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  }
-}, {
-  sequelize,
-  modelName: 'jogo',
-  tableName: 'jogos',
-  timestamps: false
-});
+})
 
 module.exports = Jogo;
